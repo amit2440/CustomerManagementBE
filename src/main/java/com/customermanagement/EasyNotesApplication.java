@@ -1,9 +1,12 @@
-package com.example.easynotes;
+package com.customermanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+/**
+ * Created by Amit Raut
+ */
 @SpringBootApplication
 @EnableJpaAuditing
 public class EasyNotesApplication {

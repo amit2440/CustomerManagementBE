@@ -1,8 +1,8 @@
-package com.example.easynotes.controller;
+package com.customermanagement.controller;
 
-import com.example.easynotes.exception.ResourceNotFoundException;
-import com.example.easynotes.model.Note;
-import com.example.easynotes.repository.NoteRepository;
+import com.customermanagement.exception.ResourceNotFoundException;
+import com.customermanagement.model.Note;
+import com.customermanagement.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Created by rajeevkumarsingh on 27/06/17.
+ * Created by Amit Raut
  */
 @RestController
 @RequestMapping("/api")

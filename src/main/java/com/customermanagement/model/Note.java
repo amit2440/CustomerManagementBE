@@ -1,4 +1,4 @@
-package com.example.easynotes.model;
+package com.customermanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
- * Created by rajeevkumarsingh on 27/06/17.
+ * Created by Amit Raut
  */
 @Entity
 @Table(name = "notes")

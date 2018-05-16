@@ -1,0 +1,68 @@
+package com.customermanagement.controller;
+
+import com.customermanagement.exception.ResourceNotFoundException;
+import com.customermanagement.model.Customer;
+import com.customermanagement.repository.CustManagementRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+/**
+ * Created by Amit Raut
+ */
+@RestController
+@RequestMapping("/custManagement")
+public class CustManagementController {
+
+    @Autowired
+    CustManagementRepo custManagementRepo;
+
+    @GetMapping("/allCustomers")
+    public List<Customer> getAllCustomers() {
+
+        return custManagementRepo.findAll();
+    }
+
+    /*@GetMapping("/notes")
+    public List<Customer> getAllNotes() {
+        return custManagementRepo.findAll();
+    }
+
+    @PostMapping("/notes")
+    public Customer createNote(@Valid @RequestBody Customer customer) {
+        return custManagementRepo.save(customer);
+    }
+
+    @GetMapping("/notes/{id}")
+    public Customer getNoteById(@PathVariable(value = "id") Long noteId) {
+        return custManagementRepo.findById(noteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", noteId));
+    }
+
+    @PutMapping("/notes/{id}")
+    public Customer updateNote(@PathVariable(value = "id") Long noteId,
+                               @Valid @RequestBody Customer customerDetails) {
+
+        Customer customer = custManagementRepo.findById(noteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", noteId));
+
+        customer.setTitle(customerDetails.getTitle());
+        customer.setContent(customerDetails.getContent());
+
+        Customer updatedCustomer = custManagementRepo.save(customer);
+        return updatedCustomer;
+    }
+
+    @DeleteMapping("/notes/{id}")
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long noteId) {
+        Customer customer = custManagementRepo.findById(noteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", noteId));
+
+        custManagementRepo.delete(customer);
+
+        return ResponseEntity.ok().build();
+    }*/
+}

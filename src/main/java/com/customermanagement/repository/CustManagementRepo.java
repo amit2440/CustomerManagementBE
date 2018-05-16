@@ -1,14 +1,14 @@
 package com.customermanagement.repository;
 
-import com.customermanagement.model.Note;
+import com.customermanagement.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by rajeevkumarsingh on 27/06/17.
+ * Created by Amit Raut on 16/05/2017
  */
 
 @Repository
-public interface NoteRepository extends JpaRepository<Note, Long> {
+public interface CustManagementRepo extends JpaRepository<Customer, Long> {
 
 }

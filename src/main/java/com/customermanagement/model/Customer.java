@@ -24,7 +24,7 @@ import java.util.Set;
 @Table(name = "customer")
 /*@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)*/
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "customerId")
 public class Customer implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,11 +57,11 @@ public class Customer implements Serializable{
     @LastModifiedDate
     private Date updatedAt;*/
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="customer")
-    private Set<Connection> connections;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="connectionCustomer")
+     private Set<Connection> connections;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy="customer")
-    @JsonManagedReference
+    //@JsonManagedReference
     private Set<Address> addresses;
 
     public Long getCustomerId() {

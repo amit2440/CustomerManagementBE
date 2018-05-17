@@ -1,5 +1,7 @@
 package com.customermanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import javax.persistence.*;
@@ -14,7 +16,7 @@ import java.util.Optional;
  */
 
 @Entity
-@JsonPOJOBuilder
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "paymentId")
 public class Payment implements Serializable{
 
     @Id
@@ -43,7 +45,7 @@ public class Payment implements Serializable{
 
     private String invoiceNo;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "connection_Id")
     private Connection connection;
 

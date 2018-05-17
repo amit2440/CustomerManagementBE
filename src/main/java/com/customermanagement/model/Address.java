@@ -1,9 +1,6 @@
 package com.customermanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import javax.persistence.*;
@@ -15,7 +12,7 @@ import java.util.Optional;
  */
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "addressId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "addressId")
 public class Address implements Serializable{
 
     @Id
@@ -30,9 +27,9 @@ public class Address implements Serializable{
 
     private Integer pinCode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
-    @JsonBackReference
+    //@JsonBackReference
     private Customer customer;
 
     public Long getAddressId() {
@@ -76,10 +73,10 @@ public class Address implements Serializable{
     }
 
     public Customer getCustomer() {
-        return customer;
+       return customer;
     }
 
     public void setCustomer(Customer customer) {
-        this.customer = customer;
+       this.customer = customer;
     }
 }

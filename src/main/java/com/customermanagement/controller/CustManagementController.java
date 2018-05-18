@@ -3,6 +3,7 @@ package com.customermanagement.controller;
 import com.customermanagement.exception.ResourceNotFoundException;
 import com.customermanagement.model.Connection;
 import com.customermanagement.model.Customer;
+import com.customermanagement.model.Payment;
 import com.customermanagement.repository.CustManagementRepo;
 import com.customermanagement.service.CustManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public class CustManagementController {
     @GetMapping("/allConnections")
     public List<Connection> getAllConnections() {
         return custManagementService.getAllConnections();
+    }
+
+    @GetMapping("/allPayments")
+    public List<Payment> getAllPayments() {
+        return custManagementService.getAllPayments();
     }
 /*
     @PostMapping("/notes")

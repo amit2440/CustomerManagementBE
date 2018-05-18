@@ -25,6 +25,7 @@ import java.util.Set;
 /*@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)*/
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "customerId")
+@JsonIgnoreProperties({"connections" instanceof  })
 public class Customer implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +58,7 @@ public class Customer implements Serializable{
     @LastModifiedDate
     private Date updatedAt;*/
 
-    @OneToMany(mappedBy="customer", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="customer")
      private Set<Connection> connections;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy="customer")

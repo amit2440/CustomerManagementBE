@@ -2,13 +2,10 @@ package com.customermanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -20,7 +17,6 @@ public class Connection implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @PrimaryKeyJoinColumn
     private Long connectionId;
 
     @NotNull
@@ -30,7 +26,7 @@ public class Connection implements Serializable{
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
-    private Customer connectionCustomer;
+    private Customer customer;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy="connection")
     private Set<Payment> payments;
@@ -60,11 +56,11 @@ public class Connection implements Serializable{
     }
 
     public Customer getCustomer() {
-        return connectionCustomer;
+        return customer;
     }
 
     public void setCustomer(Customer customer) {
-        this.connectionCustomer = customer;
+        this.customer = customer;
     }
 
     public Set<Payment> getPayments() {

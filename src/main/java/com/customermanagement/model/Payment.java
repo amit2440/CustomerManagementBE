@@ -21,7 +21,7 @@ public class Payment implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String paymentId;
+    private Long paymentId;
 
     @NotNull
     private String paymentStatus;
@@ -49,11 +49,11 @@ public class Payment implements Serializable{
     @JoinColumn(name = "connection_Id")
     private Connection connection;
 
-    public String getPaymentId() {
+    public Long getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(String paymentId) {
+    public void setPaymentId(Long paymentId) {
         this.paymentId = paymentId;
     }
 

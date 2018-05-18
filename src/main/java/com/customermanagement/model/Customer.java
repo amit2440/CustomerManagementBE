@@ -57,7 +57,7 @@ public class Customer implements Serializable{
     @LastModifiedDate
     private Date updatedAt;*/
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="connectionCustomer")
+    @OneToMany(mappedBy="customer", cascade = CascadeType.REMOVE, orphanRemoval = true)
      private Set<Connection> connections;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy="customer")

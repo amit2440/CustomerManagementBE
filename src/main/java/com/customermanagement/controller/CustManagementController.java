@@ -1,8 +1,10 @@
 package com.customermanagement.controller;
 
 import com.customermanagement.exception.ResourceNotFoundException;
+import com.customermanagement.model.Connection;
 import com.customermanagement.model.Customer;
 import com.customermanagement.repository.CustManagementRepo;
+import com.customermanagement.service.CustManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,19 +20,18 @@ import java.util.List;
 public class CustManagementController {
 
     @Autowired
-    CustManagementRepo custManagementRepo;
+    CustManagementService custManagementService;
 
     @GetMapping("/allCustomers")
     public List<Customer> getAllCustomers() {
-
-        return custManagementRepo.findAll();
+        return custManagementService.getAllCustomers();
     }
 
-    /*@GetMapping("/notes")
-    public List<Customer> getAllNotes() {
-        return custManagementRepo.findAll();
+    @GetMapping("/allConnections")
+    public List<Connection> getAllConnections() {
+        return custManagementService.getAllConnections();
     }
-
+/*
     @PostMapping("/notes")
     public Customer createNote(@Valid @RequestBody Customer customer) {
         return custManagementRepo.save(customer);

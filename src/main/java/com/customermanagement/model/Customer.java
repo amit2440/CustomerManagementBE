@@ -25,20 +25,24 @@ import java.util.Set;
 /*@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)*/
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "customerId")
-@JsonIgnoreProperties({"connections" instanceof  })
+//@JsonIgnoreProperties({"connections"})
 public class Customer implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(View.Summary.class)
     private Long customerId;
 
     @NotBlank
     @NotNull
+    @JsonView(View.Summary.class)
     private String firstName;
 
     @NotBlank
     @NotNull
+    @JsonView(View.Summary.class)
     private String lastName;
 
+    @JsonView(View.Summary.class)
     private String userName;
 /*
 
@@ -48,10 +52,12 @@ public class Customer implements Serializable{
     private Date createdAt;
 */
     @NotNull
+    @JsonView(View.Summary.class)
     private Long mobileNo;
 
     @Email
     @NotNull
+    @JsonView(View.Summary.class)
     private String emailId;
     /*@Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,10 +66,6 @@ public class Customer implements Serializable{
 
     @OneToMany(mappedBy="customer")
      private Set<Connection> connections;
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="customer")
-    //@JsonManagedReference
-    private Set<Address> addresses;
 
     public Long getCustomerId() {
         return customerId;
@@ -121,11 +123,5 @@ public class Customer implements Serializable{
         this.connections = connections;
     }
 
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
 
-    public void setAddresses(Set<Address> addresses) {
-        this.addresses = addresses;
-    }
 }

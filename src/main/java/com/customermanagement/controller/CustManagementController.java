@@ -4,8 +4,10 @@ import com.customermanagement.exception.ResourceNotFoundException;
 import com.customermanagement.model.Connection;
 import com.customermanagement.model.Customer;
 import com.customermanagement.model.Payment;
+import com.customermanagement.model.View;
 import com.customermanagement.repository.CustManagementRepo;
 import com.customermanagement.service.CustManagementService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,7 @@ public class CustManagementController {
     }
 
     @GetMapping("/allConnections")
+    @JsonView(View.Summary.class)
     public List<Connection> getAllConnections() {
         return custManagementService.getAllConnections();
     }
@@ -37,6 +40,8 @@ public class CustManagementController {
     public List<Payment> getAllPayments() {
         return custManagementService.getAllPayments();
     }
+
+
 /*
     @PostMapping("/notes")
     public Customer createNote(@Valid @RequestBody Customer customer) {

@@ -38,4 +38,6 @@ public class CustManagementService {
     public List<Payment> getAllPayments(){
         return paymentRepo.findAll();
     }
+
+
 }

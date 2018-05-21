@@ -1,6 +1,7 @@
 package com.customermanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -21,31 +22,40 @@ public class Payment implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(View.Summary.class)
     private Long paymentId;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private String paymentStatus;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private LocalDate date;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private BigDecimal paymentAmount;
 
+    @JsonView(View.Summary.class)
     private String paymentMethod;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private LocalDate paymentFrom;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private LocalDate paymentTo;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private String internetPlan;
 
+    @JsonView(View.Summary.class)
     private String invoiceNo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "connection_Id")
     private Connection connection;
 

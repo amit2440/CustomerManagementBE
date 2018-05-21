@@ -17,20 +17,25 @@ public class Address implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long addressId;
+    @JsonView(View.Summary.class)
+        private Long addressId;
 
-    private String address;
+        @JsonView(View.Summary.class)
+        private String address;
 
-    private String city;
+        @JsonView(View.Summary.class)
+        private String city;
 
-    private String country;
+        @JsonView(View.Summary.class)
+        private String country;
 
-    private Integer pinCode;
+        @JsonView(View.Summary.class)
+        private Integer pinCode;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "connection")
     //@JsonBackReference
-    private Customer customer;
+    private Connection connection;
 
     public Long getAddressId() {
         return addressId;
@@ -72,11 +77,11 @@ public class Address implements Serializable{
         this.pinCode = pinCode;
     }
 
-    public Customer getCustomer() {
-       return customer;
+    public Connection getConnection() {
+        return connection;
     }
 
-    public void setCustomer(Customer customer) {
-       this.customer = customer;
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 }

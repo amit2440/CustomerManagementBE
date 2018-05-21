@@ -1,11 +1,13 @@
 package com.customermanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -17,19 +19,41 @@ public class Connection implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(View.Summary.class)
     private Long connectionId;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private String connectionName;
 
+    @JsonView(View.Summary.class)
     private String connectionStatus;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
+    @JsonView(View.Summary.class)
     private Customer customer;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy="connection")
+    @JsonView(View.Summary.class)
     private Set<Payment> payments;
+
+    @OneToOne(fetch = FetchType.EAGER,mappedBy="connection")
+    //@JsonManagedReference
+    @JsonView(View.Summary.class)
+    private Address addresses;
+
+    @NotNull
+    @JsonView(View.Summary.class)
+    private LocalDate connectionDate;
+
+    public Address getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Address addresses) {
+        this.addresses = addresses;
+    }
 
     public Long getConnectionId() {
         return connectionId;
@@ -69,5 +93,13 @@ public class Connection implements Serializable{
 
     public void setPayments(Set<Payment> payments) {
         this.payments = payments;
+    }
+
+    public LocalDate getConnectionDate() {
+        return connectionDate;
+    }
+
+    public void setConnectionDate(LocalDate connectionDate) {
+        this.connectionDate = connectionDate;
     }
 }

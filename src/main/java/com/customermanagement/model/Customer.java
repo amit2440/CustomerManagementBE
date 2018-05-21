@@ -24,11 +24,12 @@ import java.util.Set;
 @Table(name = "customer")
 /*@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)*/
+@SequenceGenerator(name="seq", initialValue=100, allocationSize=1)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "customerId")
 //@JsonIgnoreProperties({"connections"})
 public class Customer implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     @JsonView(View.Summary.class)
     private Long customerId;
 

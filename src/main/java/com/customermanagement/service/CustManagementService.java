@@ -39,5 +39,18 @@ public class CustManagementService {
         return paymentRepo.findAll();
     }
 
+    public boolean createCustomer(Customer customer) {
+        try {
+            if (custManagementRepo.findByMobileNo(customer.getMobileNo()).isPresent()) {
+                return false;
+            }
+            custManagementRepo.save(customer);
+            return true;
+        }catch (Exception e) {
+            throw e;
+        }
+    }
+
+
 
 }

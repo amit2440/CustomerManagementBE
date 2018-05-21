@@ -9,9 +9,11 @@ import com.customermanagement.repository.CustManagementRepo;
 import com.customermanagement.service.CustManagementService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -40,6 +42,21 @@ public class CustManagementController {
     public List<Payment> getAllPayments() {
         return custManagementService.getAllPayments();
     }
+
+    @CrossOrigin(origins = "http://localhost:8080/custManagement")
+    @PostMapping(value="/createCustomer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>  createCustomer(@RequestBody Customer customer){
+        try {
+            if (custManagementService.createCustomer(customer))
+                return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
+        }catch(Exception e) {
+            throw e;
+        }
+    }
+
+
+
 
 
 /*

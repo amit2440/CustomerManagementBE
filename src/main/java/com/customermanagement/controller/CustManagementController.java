@@ -22,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/custManagement")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class CustManagementController {
 
     @Autowired
@@ -43,13 +44,12 @@ public class CustManagementController {
         return custManagementService.getAllPayments();
     }
 
-    @CrossOrigin(origins = "http://localhost:8080/custManagement")
     @PostMapping(value="/createCustomer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?>  createCustomer(@RequestBody Customer customer){
         try {
             if (custManagementService.createCustomer(customer))
                 return ResponseEntity.ok().build();
-            return ResponseEntity.noContent().build();
+            throw new RuntimeException("User with same mobile no already exists");
         }catch(Exception e) {
             throw e;
         }

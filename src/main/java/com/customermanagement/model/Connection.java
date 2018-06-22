@@ -15,10 +15,11 @@ import java.util.Set;
  */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "connectionId")
+@SequenceGenerator(name="seq", initialValue=1000, allocationSize=1)
 public class Connection implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     @JsonView(View.Summary.class)
     private Long connectionId;
 
@@ -38,7 +39,7 @@ public class Connection implements Serializable{
     @JsonView(View.Summary.class)
     private Set<Payment> payments;
 
-    @OneToOne(fetch = FetchType.EAGER,mappedBy="connection")
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy="connection")
     //@JsonManagedReference
     @JsonView(View.Summary.class)
     private Address addresses;

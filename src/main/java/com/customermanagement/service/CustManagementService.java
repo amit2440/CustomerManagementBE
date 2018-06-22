@@ -51,6 +51,11 @@ public class CustManagementService {
         }
     }
 
+    public void createConnection(Connection conn) {
+        connectionRepo.save(conn);
+    }
+
+
 
 
 }

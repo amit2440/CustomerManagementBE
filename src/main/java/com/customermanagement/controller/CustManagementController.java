@@ -55,6 +55,15 @@ public class CustManagementController {
         }
     }
 
+    @PostMapping(value="/createConnection", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>  createConnection(@RequestBody Connection conn){
+
+        custManagementService.createConnection(conn);
+                return ResponseEntity.ok().build();
+
+
+    }
+
 
 
 

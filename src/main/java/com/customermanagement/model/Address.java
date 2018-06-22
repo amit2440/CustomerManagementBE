@@ -13,10 +13,11 @@ import java.util.Optional;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "addressId")
+@SequenceGenerator(name="seq", initialValue=1000, allocationSize=1)
 public class Address implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     @JsonView(View.Summary.class)
         private Long addressId;
 
@@ -32,7 +33,7 @@ public class Address implements Serializable{
         @JsonView(View.Summary.class)
         private Integer pinCode;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "connection")
     //@JsonBackReference
     private Connection connection;

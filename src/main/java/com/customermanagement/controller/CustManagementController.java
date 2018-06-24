@@ -9,9 +9,11 @@ import com.customermanagement.repository.CustManagementRepo;
 import com.customermanagement.service.CustManagementService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -64,6 +66,19 @@ public class CustManagementController {
 
     }
 
+    @PostMapping("/profile/uploadpicture")
+    public ResponseEntity < String > handleFileUpload(@RequestParam("file") MultipartFile file) {
+        String message = "";
+        try {
+           // fileservice.store(file);
+            custManagementService.sendEmail();
+            message = "You successfully uploaded " + file.getOriginalFilename() + "!";
+            return ResponseEntity.status(HttpStatus.OK).body(message);
+        } catch (Exception e) {
+            message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+        }
+    }
 
 
 

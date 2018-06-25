@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 /**
@@ -71,7 +73,12 @@ public class CustManagementController {
         String message = "";
         try {
            // fileservice.store(file);
-            custManagementService.sendEmail();
+            File convFile = new File(file.getOriginalFilename());
+            convFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(convFile);
+            fos.write(file.getBytes());
+            fos.close();
+            custManagementService.sendEmail(convFile);
             message = "You successfully uploaded " + file.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.OK).body(message);
         } catch (Exception e) {
@@ -79,6 +86,20 @@ public class CustManagementController {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
     }
+
+    @PostMapping("/sendEmail")
+    public ResponseEntity < String > sendEmail() {
+        String message = "";
+        try {
+            // fileservice.store(file);
+          //  custManagementService.sendEmail();
+            return ResponseEntity.status(HttpStatus.OK).body(message);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+        }
+    }
+
+
 
 
 

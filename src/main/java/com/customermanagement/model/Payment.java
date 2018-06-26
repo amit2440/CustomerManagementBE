@@ -18,10 +18,11 @@ import java.util.Optional;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "paymentId")
+@SequenceGenerator(name="payment_seq", initialValue=1000, allocationSize=1)
 public class Payment implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="payment_seq")
     @JsonView(View.Summary.class)
     private Long paymentId;
 

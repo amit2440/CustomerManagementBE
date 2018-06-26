@@ -120,6 +120,13 @@ public class CustManagementService {
 
     }
 
+    public String findMaxInvoiceNo(){
+       return paymentRepo.findMaxInvoiceNo();
+    }
+
+    public void addPayment(Payment payment){
+        paymentRepo.save(payment);
+    }
 
 
 

@@ -68,6 +68,14 @@ public class CustManagementController {
 
     }
 
+    @PostMapping(value="/addPayment", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>  addPayment(@RequestBody Payment payment){
+
+        custManagementService.addPayment(payment);
+        return ResponseEntity.ok().build();
+
+    }
+
     @PostMapping("/profile/uploadpicture")
     public ResponseEntity < String > handleFileUpload(@RequestParam("file") MultipartFile file) {
         String message = "";
@@ -139,4 +147,11 @@ public class CustManagementController {
 
         return ResponseEntity.ok().build();
     }*/
+
+    @GetMapping("/getMaxInvoiceNo")
+    public Payment getMaxInvoiceNo() {
+        Payment p = new Payment();
+        p.setInvoiceNo(custManagementService.findMaxInvoiceNo());
+        return p;
+    }
 }

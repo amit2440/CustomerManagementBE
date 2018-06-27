@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "paymentId")
-@SequenceGenerator(name="payment_seq", initialValue=1000, allocationSize=1)
+@SequenceGenerator(name="payment_seq", initialValue=1000, allocationSize=1,sequenceName = "PAY_SEQ")
 public class Payment implements Serializable{
 
     @Id

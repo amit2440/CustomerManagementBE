@@ -3,6 +3,7 @@ package com.customermanagement.service;
 import com.customermanagement.model.Connection;
 import com.customermanagement.model.Customer;
 import com.customermanagement.model.Payment;
+import com.customermanagement.repository.AddressRepo;
 import com.customermanagement.repository.ConnectionRepo;
 import com.customermanagement.repository.CustManagementRepo;
 import com.customermanagement.repository.PaymentRepo;
@@ -36,6 +37,9 @@ public class CustManagementService {
 
     @Autowired
     PaymentRepo paymentRepo;
+
+    @Autowired
+    AddressRepo addressRepo;
 
     public List<Customer> getAllCustomers(){
         return custManagementRepo.findAll();

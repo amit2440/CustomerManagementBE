@@ -15,11 +15,11 @@ import java.util.Set;
  */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "connectionId")
-@SequenceGenerator(name="seq", initialValue=1000, allocationSize=1)
+@SequenceGenerator(name="conn_seq", initialValue=1000, allocationSize=1,sequenceName = "CONN_SEQ")
 public class Connection implements Serializable{
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="conn_seq")
     @JsonView(View.Summary.class)
     private Long connectionId;
 

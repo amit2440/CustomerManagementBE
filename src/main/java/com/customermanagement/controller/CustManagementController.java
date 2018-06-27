@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,6 +49,7 @@ public class CustManagementController {
         return custManagementService.getAllPayments();
     }
 
+    @Transactional
     @PostMapping(value="/createCustomer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?>  createCustomer(@RequestBody Customer customer){
         try {
@@ -59,23 +61,25 @@ public class CustManagementController {
         }
     }
 
+    @Transactional
     @PostMapping(value="/createConnection", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?>  createConnection(@RequestBody Connection conn){
-
+        conn.getAddresses().setConnection(conn);
         custManagementService.createConnection(conn);
                 return ResponseEntity.ok().build();
 
 
     }
 
+    @Transactional
     @PostMapping(value="/addPayment", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?>  addPayment(@RequestBody Payment payment){
-
         custManagementService.addPayment(payment);
         return ResponseEntity.ok().build();
 
     }
 
+    @Transactional
     @PostMapping("/profile/uploadpicture")
     public ResponseEntity < String > handleFileUpload(@RequestParam("file") MultipartFile file) {
         String message = "";
@@ -94,23 +98,6 @@ public class CustManagementController {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
     }
-
-    @PostMapping("/sendEmail")
-    public ResponseEntity < String > sendEmail() {
-        String message = "";
-        try {
-            // fileservice.store(file);
-          //  custManagementService.sendEmail();
-            return ResponseEntity.status(HttpStatus.OK).body(message);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
-        }
-    }
-
-
-
-
-
 
 /*
     @PostMapping("/notes")

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "addressId")
-@SequenceGenerator(name="address_seq", initialValue=1000, allocationSize=1)
+@SequenceGenerator(name="address_seq", initialValue=1000, allocationSize=1,sequenceName = "ADDR_SEQ")
 public class Address implements Serializable{
 
     @Id

@@ -24,7 +24,7 @@ import java.util.Set;
 @Table(name = "customer")
 /*@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)*/
-@SequenceGenerator(name="seq", initialValue=1000, allocationSize=1)
+@SequenceGenerator(name="seq", initialValue=1000, allocationSize=1,sequenceName = "CUST_SEQ")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "customerId")
 //@JsonIgnoreProperties({"connections"})
 public class Customer implements Serializable{

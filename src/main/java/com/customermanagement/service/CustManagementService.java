@@ -132,6 +132,11 @@ public class CustManagementService {
         paymentRepo.save(payment);
     }
 
+    public void updatePayment(Payment payment){
+        paymentRepo.updatePayment(payment.getInvoiceNo(),payment.getPaymentMethod(),payment.getPaymentAmount(),payment.getPaymentStatus(),payment.getInternetPlan()
+        ,payment.getPaymentId(),payment.getDate());
+    }
+
 
 
 }

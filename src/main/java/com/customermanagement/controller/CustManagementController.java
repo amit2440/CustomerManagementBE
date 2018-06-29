@@ -141,4 +141,15 @@ public class CustManagementController {
         p.setInvoiceNo(custManagementService.findMaxInvoiceNo());
         return p;
     }
+
+    @Transactional
+    @PostMapping(value="/updatePayment", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?>  updatePayment(@RequestBody Payment payment){
+        //conn.getAddresses().setConnection(conn);
+       // custManagementService.createConnection(conn);
+        custManagementService.updatePayment(payment);
+        return ResponseEntity.ok().build();
+
+
+    }
 }
